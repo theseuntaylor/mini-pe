@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mini-pe</string>
+    <string name="taps_db">taps.db</string>
 </resources>

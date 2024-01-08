@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -13,6 +15,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "BASE_URL", "\"http://localhost:3000/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -30,17 +34,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.0"
     }
     packaging {
         resources {
@@ -59,6 +64,29 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+
+    // Retrofit and OkHttp Dependencies
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+
+    // Room Dependencies
+    implementation("androidx.room:room-common:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("androidx.core:core-ktx:1.12.0")
+
+    ksp("androidx.room:room-compiler:2.6.1")
+    androidTestImplementation("androidx.room:room-testing:2.6.1")
+
+    // Hilt Dependencies
+    implementation("com.google.dagger:hilt-android:2.47")
+    ksp("com.google.dagger:hilt-compiler:2.47")
+
+    // For instrumentation tests
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.47")
+    kspAndroidTest("com.google.dagger:hilt-compiler:2.47")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
