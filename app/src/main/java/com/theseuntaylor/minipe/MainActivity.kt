@@ -13,7 +13,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.theseuntaylor.minipe.lib_login.ui.LoginScreen
 import com.theseuntaylor.minipe.lib_taps.ui.TapsScreen
@@ -46,16 +45,9 @@ class MainActivity : ComponentActivity() {
                                 composable(route = Screens.Login.route) {
                                     LoginScreen(navController = navController)
                                 }
-                                navigation(
-                                    route = "/",
-                                    startDestination = Screens.Taps.route
-                                ) {
-                                    composable(route = Screens.Taps.route) {
-                                        TapsScreen()
-                                    }
+                                composable(route = Screens.Taps.route) {
+                                    TapsScreen()
                                 }
-
-
                             }
                         }
                     }
