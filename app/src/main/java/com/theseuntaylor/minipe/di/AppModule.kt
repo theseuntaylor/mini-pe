@@ -3,8 +3,8 @@ package com.theseuntaylor.minipe.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.theseuntaylor.minipe.BuildConfig
-import com.theseuntaylor.minipe.lib_login.remote.AuthenticationNetworkDataSource
-import com.theseuntaylor.minipe.lib_taps.remote.TapsNetworkDataSource
+import com.theseuntaylor.minipe.lib_login.data.remote.LoginNetworkDataSource
+import com.theseuntaylor.minipe.lib_taps.data.remote.TapsNetworkDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,8 +44,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAuthenticationDataSource(retrofit: Retrofit): AuthenticationNetworkDataSource =
-        retrofit.create(AuthenticationNetworkDataSource::class.java)
+    fun provideAuthenticationDataSource(retrofit: Retrofit): LoginNetworkDataSource =
+        retrofit.create(LoginNetworkDataSource::class.java)
 
     @Provides
     @Singleton
@@ -58,6 +58,7 @@ object AppModule {
         val originalRequest = it.request()
         val request = originalRequest
             .newBuilder()
+            .addHeader("Content-Type", "application/json")
         it.proceed(request.build())
     }
 

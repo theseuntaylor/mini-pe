@@ -3,8 +3,8 @@ package com.theseuntaylor.minipe.di
 import android.content.Context
 import androidx.room.Room
 import com.theseuntaylor.minipe.R
-import com.theseuntaylor.minipe.lib_taps.local.TapsDatabase
-import com.theseuntaylor.minipe.lib_taps.local.TapsDao
+import com.theseuntaylor.minipe.lib_taps.data.local.TapsDatabase
+import com.theseuntaylor.minipe.lib_taps.data.local.TapsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

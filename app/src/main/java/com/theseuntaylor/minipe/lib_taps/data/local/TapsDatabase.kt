@@ -1,4 +1,4 @@
-package com.theseuntaylor.minipe.lib_taps.local
+package com.theseuntaylor.minipe.lib_taps.data.local
 
 import androidx.room.RoomDatabase
 

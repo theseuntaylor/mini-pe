@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">mini-pe</string>
     <string name="taps_db">taps.db</string>
+    <string name="showPassword">Show Password</string>
+    <string name="hidePassword">Hide Password</string>
+    <string name="username">Username</string>
+    <string name="login">Log In</string>
+    <string name="password">Password</string>
+    <string name="img_pe_content_desc">Content Description for PassEntry\'s icon</string>
 </resources>
