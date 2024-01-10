@@ -7,4 +7,6 @@
     <string name="login">Log In</string>
     <string name="password">Password</string>
     <string name="img_pe_content_desc">Content Description for PassEntry\'s icon</string>
+    <string name="taps_header">Taps History</string>
+    <string name="retry">Retry</string>
 </resources>

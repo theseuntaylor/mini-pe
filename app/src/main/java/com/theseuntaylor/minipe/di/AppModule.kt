@@ -1,18 +1,26 @@
 package com.theseuntaylor.minipe.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.theseuntaylor.minipe.BuildConfig
+import com.theseuntaylor.minipe.core.data.DataStoreService
 import com.theseuntaylor.minipe.lib_login.data.remote.LoginNetworkDataSource
 import com.theseuntaylor.minipe.lib_taps.data.remote.TapsNetworkDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,6 +33,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    private val Context.tokenDataStore: DataStore<Preferences> by preferencesDataStore(name = BuildConfig.DATASTORE_NAME)
 
     @Singleton
     @Provides
@@ -54,12 +64,22 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideInterceptor() = Interceptor {
-        val originalRequest = it.request()
+    fun provideInterceptor(dataStore: DataStoreService) = Interceptor { chain ->
+        val originalRequest = chain.request()
+        val token = runBlocking {
+            dataStore.getToken().first()
+        }
+
+
         val request = originalRequest
             .newBuilder()
             .addHeader("Content-Type", "application/json")
-        it.proceed(request.build())
+
+        if (token.isNotBlank()) {
+            request.addHeader("Authorization", "Bearer $token")
+        }
+
+        chain.proceed(request.build())
     }
 
     @Provides
@@ -92,4 +112,10 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(BuildConfig.BASE_URL).client(httpClient).build()
     }
+
+    @Singleton
+    @Provides
+    fun provideDataStore(
+        @ApplicationContext context: Context,
+    ): DataStore<Preferences> = context.tokenDataStore
 }

@@ -1,4 +1,4 @@
-package com.theseuntaylor.minipe.ui.theme
+package com.theseuntaylor.minipe.core.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -60,15 +60,14 @@ class LoginViewModel @Inject constructor(
                 }
             }
             .collect { res ->
-            _loginState
-                .update { loginState ->
-                loginState.copy(
-                    inProgress = false,
-                    loginSuccessful = true,
-                    result = res
-                )
+                _loginState.update { loginState ->
+                    loginState.copy(
+                        inProgress = false,
+                        loginSuccessful = true,
+                        result = res
+                    )
+                }
             }
-        }
     }
 
 }

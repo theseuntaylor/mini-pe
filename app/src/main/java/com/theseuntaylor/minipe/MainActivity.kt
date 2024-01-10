@@ -17,7 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.theseuntaylor.minipe.lib_login.ui.LoginScreen
 import com.theseuntaylor.minipe.lib_taps.ui.TapsScreen
 import com.theseuntaylor.minipe.navigation.Screens
-import com.theseuntaylor.minipe.ui.theme.MinipeTheme
+import com.theseuntaylor.minipe.core.theme.MinipeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

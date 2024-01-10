@@ -7,5 +7,5 @@ data class TapsSuccess(
 )
 
 data class TapsError(
-    val error: String,
+    val error: String
 )

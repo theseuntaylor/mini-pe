@@ -11,12 +11,13 @@ android {
 
     defaultConfig {
         applicationId = "com.theseuntaylor.minipe"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "BASE_URL", "\"http://localhost:3000/\"")
+        buildConfigField("String", "BASE_URL", "\"http://192.168.0.91:3000/\"")
+        buildConfigField("String", "DATASTORE_NAME", "\"data_store\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -72,15 +73,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.11")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 
-    // Room Dependencies
-    implementation("androidx.room:room-common:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
-
-    ksp("androidx.room:room-compiler:2.6.1")
-    androidTestImplementation("androidx.room:room-testing:2.6.1")
-
     // Hilt Dependencies
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
@@ -89,6 +81,9 @@ dependencies {
     // For instrumentation tests
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.47")
     kspAndroidTest("com.google.dagger:hilt-compiler:2.47")
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.1.0-alpha07")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
