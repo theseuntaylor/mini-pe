@@ -24,16 +24,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import com.theseuntaylor.minipe.R
 import com.theseuntaylor.minipe.core.composables.Loader
 import com.theseuntaylor.minipe.core.composables.PassEntryTextField
 import com.theseuntaylor.minipe.core.composables.VerticalSpacer
-import com.theseuntaylor.minipe.navigation.navigateToTaps
 
 @Composable
 fun LoginScreen(
-    navController: NavController,
+    navigateToTaps: () -> Unit,
     loginViewModel: LoginViewModel = hiltViewModel(),
 ) {
     val focusManager = LocalFocusManager.current
@@ -88,7 +86,7 @@ fun LoginScreen(
 
     LaunchedEffect(key1 = state) {
         if (state.loginSuccessful) {
-            navController.navigateToTaps()
+            navigateToTaps()
         }
     }
 }

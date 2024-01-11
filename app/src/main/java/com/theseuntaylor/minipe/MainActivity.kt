@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.theseuntaylor.minipe.core.theme.MinipeTheme
 import com.theseuntaylor.minipe.lib_login.ui.LoginScreen
 import com.theseuntaylor.minipe.lib_taps.ui.TapsScreen
 import com.theseuntaylor.minipe.navigation.Screens
-import com.theseuntaylor.minipe.core.theme.MinipeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,7 +43,11 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier
                             ) {
                                 composable(route = Screens.Login.route) {
-                                    LoginScreen(navController = navController)
+                                    LoginScreen(
+                                        navigateToTaps = {
+                                            navController.navigate("taps")
+                                        },
+                                    )
                                 }
                                 composable(route = Screens.Taps.route) {
                                     TapsScreen()

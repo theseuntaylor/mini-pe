@@ -13,6 +13,7 @@ class DataStoreServiceImpl @Inject constructor(
 ) : DataStoreService {
 
     private val TOKEN_KEY = stringPreferencesKey("bearer_token")
+
     override suspend fun saveToken(token: String) {
         preferencesDataStore.edit {
             it[TOKEN_KEY] = token

@@ -21,7 +21,7 @@ class LoginRepositoryImpl @Inject constructor(
     override suspend fun login(requestBody: LoginRequestBody): Flow<LoginResponse> = flow {
         try {
             val result = loginNetworkDataSource.login(requestBody)
-            saveToken(token = result.apiToken)
+            result.apiToken?.let { saveToken(token = it) }
             emit(result)
         } catch (e: SocketTimeoutException) {
             throw e
