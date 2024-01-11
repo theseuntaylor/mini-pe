@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "BASE_URL", "\"http://192.168.0.91:3000/\"")
+        buildConfigField("String", "BASE_URL", YOUR_BASE_URL)
         buildConfigField("String", "DATASTORE_NAME", "\"data_store\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
