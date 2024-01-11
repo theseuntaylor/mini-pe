@@ -19,5 +19,5 @@ Here's what you can do with PassEntry:
 - Retention of authenticated user credentials to avoid the login process
 
 ## Running the project
-- Clone the [PassEntry android coding test]("https://github.com/passentry/android-coding-test") and follow the instructions to set up and run the Docker Container.
+- Clone the [PassEntry android coding test](https://github.com/passentry/android-coding-test) and follow the instructions to set up and run the Docker Container.
 - Change the base url variable in build.gradle to point to the IP address of your local machine
